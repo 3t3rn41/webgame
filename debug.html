@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotspot Debug — 雾中宅</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0a0a0c;color:#c8bfb0;font-family:monospace;padding:20px;}
+h1{color:#b8943e;margin-bottom:10px;}
+.controls{margin-bottom:15px;}
+.controls button{background:#222;border:1px solid #b8943e;color:#b8943e;padding:6px 14px;cursor:pointer;font-family:monospace;margin-right:6px;}
+.controls button.active{background:#b8943e;color:#000;}
+.room-selector{margin-bottom:15px;}
+.room-selector select{background:#222;border:1px solid #b8943e;color:#b8943e;padding:6px;font-family:monospace;font-size:14px;}
+.room-selector label{color:#b8943e;margin-right:8px;}
+.image-wrap{position:relative;width:100%;max-width:960px;aspect-ratio:16/9;border:1px solid #444;overflow:hidden;background:#000;}
+.image-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+.hotspot-debug{position:absolute;border:2px solid rgba(255,50,50,.7);background:rgba(255,50,50,.15);cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+.hotspot-debug:hover{border-color:#ff0;background:rgba(255,255,0,.25);z-index:10;}
+.hotspot-debug .label{font-size:11px;color:#fff;background:rgba(0,0,0,.8);padding:2px 6px;white-space:nowrap;}
+.hotspot-debug .coords{position:absolute;top:0;left:0;font-size:9px;color:#0f0;background:rgba(0,0,0,.8);padding:1px 3px;}
+.info{margin-top:15px;color:#888;font-size:12px;}
+</style>
+</head>
+<body>
+<h1>雾中宅 — Hotspot Position Debugger</h1>
+<div class="controls">
+  <button id="toggle-labels" class="active">Show Labels</button>
+  <button id="toggle-coords">Show Coordinates</button>
+</div>
+<div class="room-selector">
+  <label>Room:</label>
+  <select id="room-select"></select>
+</div>
+<div class="image-wrap" id="image-wrap">
+  <img id="room-img" src="" alt="">
+  <div id="hotspots"></div>
+</div>
+<div class="info" id="info">Hover over red boxes to see hotspot details.</div>
+
+<script src="game.js"></script>
+<script>
+// This debug page loads game.js for the ROOMS data, then renders hotspots visually.
+// Note: game.js auto-initializes the game, but we override that here.
+
+(function() {
+  const select = document.getElementById('room-select');
+  const img = document.getElementById('room-img');
+  const hsBox = document.getElementById('hotspots');
+  const info = document.getElementById('info');
+  let showLabels = true;
+  let showCoords = false;
+
+  // Populate room selector
+  Object.keys(ROOMS).forEach(id => {
+    const opt = document.createElement('option');
+    opt.value = id;
+    opt.textContent = id + ' — ' + ROOMS[id].name;
+    select.appendChild(opt);
+  });
+
+  function renderDebug() {
+    const roomId = select.value;
+    const r = ROOMS[roomId];
+    if (!r) return;
+    img.src = r.img;
+    hsBox.innerHTML = '';
+
+    r.hotspots.forEach(h => {
+      const d = document.createElement('div');
+      d.className = 'hotspot-debug';
+      d.style.left = h.x + '%';
+      d.style.top = h.y + '%';
+      d.style.width = h.w + '%';
+      d.style.height = h.h + '%';
+      let inner = '';
+      if (showLabels) inner += `<span class="label">${h.label}</span>`;
+      if (showCoords) inner += `<span class="coords">x:${h.x} y:${h.y} w:${h.w} h:${h.h}</span>`;
+      d.innerHTML = inner;
+      d.onmouseenter = () => {
+        info.textContent = `${h.label} — id: ${h.id}, action: ${h.action}, x:${h.x}%, y:${h.y}%, w:${h.w}%, h:${h.h}%`;
+      };
+      hsBox.appendChild(d);
+    });
+
+    info.textContent = `Room: ${r.name} — ${r.hotspots.length} hotspots. Hover over red boxes for details.`;
+  }
+
+  select.onchange = renderDebug;
+  document.getElementById('toggle-labels').onclick = function() {
+    showLabels = !showLabels;
+    this.classList.toggle('active', showLabels);
+    renderDebug();
+  };
+  document.getElementById('toggle-coords').onclick = function() {
+    showCoords = !showCoords;
+    this.classList.toggle('active', showCoords);
+    renderDebug();
+  };
+
+  // Default to first room
+  select.value = 'gate';
+  renderDebug();
+})();
+</script>
+</body>
+</html>
