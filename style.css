@@ -44,7 +44,10 @@ body::after{
 
 #room{position:relative;background:#08080a;border:1px solid rgba(184,148,62,.15);overflow:hidden;}
 #room-img-wrap{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#000;}
-#room-img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.78) contrast(1.1) saturate(.7);transition:filter .6s;}
+#room-img-wrap::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(184,148,62,.03) 10px,rgba(184,148,62,.03) 20px);pointer-events:none;opacity:0;transition:opacity .3s;}
+#room-img-wrap.img-loading::after{opacity:1;}
+#room-img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.78) contrast(1.1) saturate(.7);transition:filter .6s,opacity .35s ease;opacity:1;}
+#room-img.fading{opacity:0;}
 #room:hover #room-img{filter:brightness(.85) contrast(1.1) saturate(.75);}
 
 /* Hotspots */

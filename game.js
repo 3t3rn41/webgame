@@ -457,16 +457,63 @@ function showPhoto() {
 // ============================================================
 // ROOM RENDER
 // ============================================================
+let _roomToken = 0; // Prevents race conditions during rapid navigation
+
 function renderRoom() {
   const r = ROOMS[S.room];
   if (!r) return;
-  $('room-img').src = r.img;
+
+  // Generate a unique token for this render to prevent race conditions
+  const myToken = ++_roomToken;
+
+  // Update text content immediately
   $('room-name').textContent = r.name;
   $('room-desc').textContent = r.desc;
   $('msg').textContent = '';
   $('msg').className = '';
 
-  // hotspots
+  // --- Robust image loading with preload + fade ---
+  const imgEl = $('room-img');
+  const wrapEl = $('room-img-wrap');
+
+  // Show loading state (fade out old image)
+  wrapEl.classList.add('img-loading');
+  imgEl.classList.add('fading');
+
+  // Preload the new image using a separate Image object.
+  // This forces the browser to fetch and decode the image
+  // before we swap it into the visible <img> element.
+  const preloader = new Image();
+
+  preloader.onload = function() {
+    // Check if a newer renderRoom call has superseded this one
+    if (myToken !== _roomToken) return;
+
+    // Image is now in browser cache — set it on the visible element.
+    // This triggers an immediate display since the image is already decoded.
+    imgEl.src = r.img;
+
+    // Remove fade-out to reveal the new image with a smooth fade-in.
+    // Small delay ensures the browser has painted the new image first.
+    setTimeout(function() {
+      if (myToken !== _roomToken) return;
+      wrapEl.classList.remove('img-loading');
+      imgEl.classList.remove('fading');
+    }, 50);
+  };
+
+  preloader.onerror = function() {
+    if (myToken !== _roomToken) return;
+    // Fallback: set src directly even if preload failed
+    imgEl.src = r.img;
+    wrapEl.classList.remove('img-loading');
+    imgEl.classList.remove('fading');
+  };
+
+  // Start preloading
+  preloader.src = r.img;
+
+  // --- Hotspots ---
   const hsBox = $('hotspots');
   hsBox.innerHTML = '';
   r.hotspots.forEach(h => {
@@ -481,7 +528,7 @@ function renderRoom() {
     hsBox.appendChild(d);
   });
 
-  // nav
+  // --- Navigation buttons ---
   const navBox = $('nav');
   navBox.innerHTML = '';
   r.nav.forEach(n => {
