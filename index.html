@@ -3,46 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>雾中宅 · The House in the Mist</title>
-<link rel="stylesheet" href="style.css">
+<title>BPP 中央档案库 · Bureau of Paranormal Phenomena</title>
+<link rel="stylesheet" href="hub.css">
+<link rel="stylesheet" href="arg.css">
 </head>
 <body>
 
-<div id="app">
-  <div id="topbar">
-    <div>
-      <div class="title">雾 中 宅</div>
-      <div class="sub">THE HOUSE IN THE MIST</div>
-    </div>
-    <div class="topbtns">
-      <button class="topbtn" id="btn-journal">📖 日记</button>
-      <button class="topbtn" id="btn-letter">✉ 信件</button>
-    </div>
+<div class="hub-bg"></div>
+
+<div class="hub-container">
+  <header class="hub-header">
+    <h1 class="hub-title">异 常 现 象 调 查 局</h1>
+    <p class="hub-subtitle">BUREAU OF PARANORMAL PHENOMENA · 中央档案库</p>
+  </header>
+
+  <div class="games-grid" id="games-grid">
+    <!-- Game cards inserted by JS -->
   </div>
 
-  <div id="room">
-    <div id="room-img-wrap">
-      <img id="room-img" src="" alt="">
-      <div id="hotspots"></div>
-    </div>
-    <div id="room-info">
-      <div id="room-name"></div>
-      <div id="room-desc"></div>
-      <div id="msg"></div>
-      <div id="nav"></div>
-    </div>
-  </div>
+  <footer class="hub-footer">
+    <p>每份档案都有独立的存档系统 · 完成调查以回收档案碎片</p>
+  </footer>
+
+  <!-- BPP 安全终端 -->
+  <div id="bpp-terminal"></div>
+
 </div>
 
-<div id="inv-bar">
-  <span class="inv-label">口 袋</span>
-  <div id="inv-items"></div>
-</div>
-
-<div class="modal-bg" id="modal-bg">
-  <div class="modal" id="modal-box"></div>
-</div>
-
-<script src="game.js"></script>
+<script src="arg.js"></script>
+<script src="hub.js"></script>
+<script src="hub-terminal.js"></script>
 </body>
 </html>

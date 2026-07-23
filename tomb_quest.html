@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-arg data-arg-game="TQ" data-arg-case="远征卷宗 #TQ-EWEW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BPP档案 #TQ-EWEW · 法老陵墓失踪案</title>
+<link rel="stylesheet" href="tomb_quest.css">
+<link rel="stylesheet" href="interact.css">
+<link rel="stylesheet" href="arg.css">
+</head>
+<body>
+
+<!-- ARG-CLUE: 象形文字密码 VDVD [Atbash] -->
+<!-- ARG-CLUE: 墓室坐标 25.7402 32.6014 [坐标] -->
+<!-- BPP-INTERNAL: 开罗考古队 +20 2-2574-XXXX -->
+<!-- 档案碎片代号: TOMB -->
+
+<button id="back-hub" onclick="location.href='index.html'">← 返回游戏中心</button>
+
+<div id="app">
+  <div id="topbar">
+    <div>
+      <div class="title">古 墓 迷 踪</div>
+      <div class="sub">TOMB OF ETERNITY</div>
+    </div>
+    <div class="topbtns">
+      <button class="topbtn" id="btn-scrolls">📜 莎草纸</button>
+      <button class="topbtn" id="btn-brief">🏺 考古笔记</button>
+    </div>
+  </div>
+
+  <div id="room">
+    <div id="room-img-wrap">
+      <img id="room-img" src="" alt="">
+      <div id="hotspots"></div>
+    </div>
+    <div id="room-info">
+      <div id="room-name"></div>
+      <div id="room-desc"></div>
+      <div id="msg"></div>
+      <div id="nav"></div>
+    </div>
+  </div>
+</div>
+
+<div id="inv-bar">
+  <span class="inv-label">背 囊</span>
+  <div id="inv-items"></div>
+</div>
+
+<div class="modal-bg" id="modal-bg">
+  <div class="modal" id="modal-box"></div>
+</div>
+
+<script src="arg.js"></script>
+<script src="tomb_quest.js"></script>
+<script src="interact.js"></script>
+</body>
+</html>

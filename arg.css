@@ -1,0 +1,609 @@
+/* ============================================================
+   arg.css — Shared ARG toolkit styles
+   Loaded alongside arg.js by every ARG-transformed game.
+   ============================================================ */
+
+/* ===== Floating ARG indicator ===== */
+.arg-indicator {
+  position: fixed;
+  top: 12px;
+  right: 130px;
+  z-index: 2999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+.arg-indicator > * { pointer-events: auto; }
+
+.arg-case {
+  font-size: 11px;
+  color: rgba(255, 107, 107, 0.85);
+  font-family: 'Courier New', monospace;
+  background: rgba(20, 10, 10, 0.92);
+  padding: 4px 10px;
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.arg-decoder-btn {
+  font-size: 11px;
+  background: rgba(15, 20, 15, 0.92);
+  border: 1px solid rgba(0, 255, 136, 0.35);
+  color: #00ff88;
+  padding: 4px 12px;
+  cursor: pointer;
+  border-radius: 2px;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.arg-decoder-btn:hover {
+  background: rgba(0, 255, 136, 0.12);
+  border-color: rgba(0, 255, 136, 0.7);
+  box-shadow: 0 0 12px rgba(0, 255, 136, 0.2);
+}
+
+/* ===== Decoder modal ===== */
+.arg-modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 6000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+}
+.arg-modal-bg.show { display: flex; }
+
+.arg-modal {
+  background: #0d0d12;
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  border-radius: 8px;
+  width: 92%;
+  max-width: 540px;
+  max-height: 82vh;
+  overflow-y: auto;
+  box-shadow: 0 0 50px rgba(0, 255, 136, 0.08), 0 8px 32px rgba(0, 0, 0, 0.6);
+  animation: argFadeIn 0.2s ease;
+}
+@keyframes argFadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.arg-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.arg-modal-header h2 {
+  margin: 0;
+  font-size: 16px;
+  color: #00ff88;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+}
+
+.arg-close {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+  transition: color 0.2s;
+}
+.arg-close:hover { color: #fff; }
+
+.arg-modal-body { padding: 18px 20px; }
+
+.arg-desc {
+  font-size: 12px;
+  color: #777;
+  margin: 0 0 14px;
+  line-height: 1.5;
+}
+
+.arg-textarea {
+  width: 100%;
+  background: #14141e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ccc;
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  resize: vertical;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+.arg-textarea:focus {
+  outline: none;
+  border-color: rgba(0, 255, 136, 0.45);
+  box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.08);
+}
+
+.arg-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.arg-select {
+  flex: 1;
+  background: #14141e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ccc;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  cursor: pointer;
+}
+.arg-select:focus { outline: none; border-color: rgba(0, 255, 136, 0.4); }
+
+.arg-btn {
+  background: rgba(0, 255, 136, 0.15);
+  border: 1px solid rgba(0, 255, 136, 0.4);
+  color: #00ff88;
+  border-radius: 4px;
+  padding: 8px 22px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 1px;
+}
+.arg-btn:hover {
+  background: rgba(0, 255, 136, 0.28);
+  box-shadow: 0 0 12px rgba(0, 255, 136, 0.2);
+}
+
+.arg-output {
+  margin-top: 16px;
+  min-height: 40px;
+}
+
+.arg-error {
+  color: #ff6b6b;
+  font-size: 13px;
+  font-family: 'Courier New', monospace;
+  padding: 8px 0;
+}
+
+.arg-success-title {
+  color: #00ff88;
+  font-size: 12px;
+  font-family: 'Courier New', monospace;
+  margin: 0 0 8px;
+}
+
+.arg-result {
+  background: rgba(0, 255, 136, 0.05);
+  border: 1px solid rgba(0, 255, 136, 0.15);
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+
+.arg-result-type {
+  display: inline-block;
+  font-size: 10px;
+  color: #ffd93d;
+  background: rgba(255, 217, 61, 0.1);
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-bottom: 6px;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
+}
+
+.arg-result-text {
+  display: block;
+  color: #eee;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  word-break: break-all;
+  line-height: 1.5;
+}
+
+.arg-result-single {
+  border-color: rgba(0, 255, 136, 0.35);
+  background: rgba(0, 255, 136, 0.08);
+}
+
+.arg-modal-footer {
+  padding: 12px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.arg-hint {
+  font-size: 11px;
+  color: #555;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ===== Encoded text display in-game ===== */
+.arg-encoded {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  color: #ffd93d;
+  background: rgba(255, 217, 61, 0.06);
+  padding: 8px 12px;
+  border: 1px dashed rgba(255, 217, 61, 0.3);
+  border-radius: 4px;
+  letter-spacing: 1px;
+  word-break: break-all;
+  margin: 8px 0;
+  display: block;
+}
+
+.arg-cipher-tag {
+  display: inline-block;
+  font-size: 10px;
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  padding: 1px 6px;
+  border-radius: 2px;
+  margin-bottom: 4px;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
+}
+
+/* ===== BPP CLASSIFIED STAMP ===== */
+.bpp-stamp {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  font-weight: bold;
+  color: rgba(200, 50, 50, 0.35);
+  border: 2px solid rgba(200, 50, 50, 0.35);
+  padding: 4px 14px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border-radius: 3px;
+  user-select: none;
+}
+
+/* ===== BPP CASE META BAR ===== */
+.bpp-case-meta {
+  display: flex;
+  gap: 16px;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  color: rgba(255, 107, 107, 0.7);
+  padding: 4px 0 8px;
+  border-bottom: 1px solid rgba(255, 107, 107, 0.15);
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.bpp-case-meta span {
+  white-space: nowrap;
+}
+
+/* ===== REDACTION ===== */
+.bpp-redaction {
+  background: #000;
+  color: #000;
+  padding: 0 3px;
+  border-radius: 1px;
+  cursor: help;
+  transition: all 0.2s;
+}
+.bpp-redaction:hover {
+  background: transparent;
+  color: inherit;
+}
+
+/* ===== BPP INTRO BANNER (case file style) ===== */
+.bpp-intro-banner {
+  background: linear-gradient(135deg, rgba(30, 5, 5, 0.97), rgba(5, 10, 25, 0.97));
+  border: 1px solid rgba(200, 50, 50, 0.3);
+  border-left: 4px solid rgba(200, 50, 50, 0.6);
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin-bottom: 18px;
+  position: relative;
+}
+.bpp-intro-banner .bpp-classified {
+  font-size: 10px;
+  color: #cc3333;
+  letter-spacing: 4px;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+.bpp-intro-banner .bpp-title {
+  font-size: 15px;
+  color: #ddd;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.bpp-intro-banner .bpp-subtitle {
+  font-size: 12px;
+  color: #888;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 8px;
+}
+.bpp-intro-banner .bpp-note {
+  font-size: 12px;
+  color: #999;
+  line-height: 1.6;
+}
+.bpp-intro-banner .bpp-note .bpp-highlight {
+  color: #ffd93d;
+  font-family: 'Courier New', monospace;
+}
+
+/* ===== ARG intro screen ===== */
+.arg-intro-banner {
+  background: linear-gradient(135deg, rgba(20, 5, 5, 0.95), rgba(5, 10, 20, 0.95));
+  border: 1px solid rgba(255, 107, 107, 0.25);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+}
+.arg-intro-banner .arg-classified {
+  font-size: 10px;
+  color: #ff6b6b;
+  letter-spacing: 3px;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 4px;
+}
+.arg-intro-banner .arg-title {
+  font-size: 14px;
+  color: #ccc;
+  font-weight: 700;
+}
+.arg-intro-banner .arg-note {
+  font-size: 11px;
+  color: #777;
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* ===== Meta terminal (hub page) ===== */
+.arg-meta-terminal {
+  background: #050508;
+  border: 1px solid rgba(224, 64, 251, 0.2);
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 20px;
+  font-family: 'Courier New', monospace;
+}
+.arg-meta-terminal h3 {
+  color: #e040fb;
+  font-size: 14px;
+  margin: 0 0 10px;
+  letter-spacing: 2px;
+}
+.arg-meta-terminal .arg-meta-status {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 10px;
+}
+.arg-meta-terminal .arg-meta-input-row {
+  display: flex;
+  gap: 8px;
+}
+.arg-meta-terminal input {
+  flex: 1;
+  background: #0a0a12;
+  border: 1px solid rgba(224, 64, 251, 0.2);
+  color: #ccc;
+  padding: 8px 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  border-radius: 4px;
+}
+.arg-meta-terminal input:focus { outline: none; border-color: rgba(224, 64, 251, 0.5); }
+.arg-meta-terminal button {
+  background: rgba(224, 64, 251, 0.15);
+  border: 1px solid rgba(224, 64, 251, 0.4);
+  color: #e040fb;
+  padding: 8px 18px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.arg-meta-terminal button:hover { background: rgba(224, 64, 251, 0.25); }
+
+/* ===== BPP HUB TERMINAL ===== */
+#bpp-terminal {
+  margin-top: 40px;
+  background: #06060a;
+  border: 1px solid rgba(224, 64, 251, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: 'Courier New', monospace;
+}
+.bpp-terminal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  background: rgba(224, 64, 251, 0.06);
+  border-bottom: 1px solid rgba(224, 64, 251, 0.15);
+}
+.bpp-terminal-title {
+  color: #e040fb;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+.bpp-terminal-status {
+  color: #888;
+  font-size: 11px;
+}
+
+/* Fragment grid */
+.bpp-fragment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  padding: 16px;
+}
+.bpp-fragment-card {
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.3s;
+}
+.bpp-fragment-card.found {
+  background: rgba(0, 255, 136, 0.04);
+  border-color: rgba(0, 255, 136, 0.2);
+}
+.bpp-fragment-card.found:hover {
+  border-color: rgba(0, 255, 136, 0.5);
+  box-shadow: 0 0 16px rgba(0, 255, 136, 0.1);
+}
+.bpp-fragment-card.locked {
+  background: rgba(255,255,255,0.02);
+  opacity: 0.5;
+}
+.bpp-fragment-code {
+  font-size: 18px;
+  font-weight: bold;
+  color: #00ff88;
+  letter-spacing: 3px;
+  margin-bottom: 4px;
+}
+.bpp-fragment-card.locked .bpp-fragment-code {
+  color: #444;
+}
+.bpp-fragment-case {
+  font-size: 11px;
+  color: #e040fb;
+  margin-bottom: 2px;
+}
+.bpp-fragment-name {
+  font-size: 12px;
+  color: #bbb;
+  margin-bottom: 4px;
+}
+.bpp-fragment-card.locked .bpp-fragment-name {
+  color: #555;
+}
+.bpp-fragment-meta {
+  font-size: 10px;
+  color: #666;
+}
+
+/* Progress bar */
+.bpp-progress {
+  position: relative;
+  height: 22px;
+  background: rgba(255,255,255,0.04);
+  margin: 0 16px 16px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.bpp-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #e040fb, #00ff88);
+  transition: width 0.8s ease;
+}
+.bpp-progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  color: #fff;
+  text-shadow: 0 0 4px rgba(0,0,0,0.8);
+}
+
+/* Secret area */
+.bpp-secret-locked {
+  padding: 20px;
+  text-align: center;
+}
+.bpp-secret-btn {
+  background: rgba(200, 50, 50, 0.15);
+  border: 1px solid rgba(200, 50, 50, 0.5);
+  color: #cc3333;
+  padding: 12px 28px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+}
+.bpp-secret-btn:hover {
+  background: rgba(200, 50, 50, 0.3);
+  box-shadow: 0 0 20px rgba(200, 50, 50, 0.3);
+}
+.bpp-warning {
+  font-size: 11px;
+  color: #888;
+  margin-top: 10px;
+}
+.bpp-hint {
+  font-size: 13px;
+  color: #777;
+  margin: 4px 0;
+}
+.bpp-hint-sub {
+  font-size: 11px;
+  color: #555;
+}
+
+/* Secret revealed */
+.bpp-secret-revealed {
+  padding: 20px;
+}
+.bpp-secret-stamp {
+  display: inline-block;
+  font-size: 11px;
+  color: #cc3333;
+  border: 1px solid #cc3333;
+  padding: 3px 12px;
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+  animation: bppPulse 2s ease-in-out infinite;
+}
+@keyframes bppPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.bpp-secret-body {
+  font-size: 12px;
+  color: #cc3333;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 16px;
+  background: rgba(200, 50, 50, 0.03);
+  border: 1px solid rgba(200, 50, 50, 0.15);
+  border-radius: 4px;
+}
+
+/* Glitch effect on reveal */
+.bpp-glitch {
+  animation: bppGlitch 0.3s ease-in-out 3;
+}
+@keyframes bppGlitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-3px, 2px); filter: hue-rotate(90deg); }
+  40% { transform: translate(3px, -2px); filter: hue-rotate(-90deg); }
+  60% { transform: translate(-2px, -1px); }
+  80% { transform: translate(2px, 1px); filter: hue-rotate(180deg); }
+  100% { transform: translate(0); }
+}
+
+@media (max-width: 600px) {
+  .arg-indicator { right: 8px; top: 44px; }
+  .arg-case { display: none; }
+  .bpp-fragment-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+}

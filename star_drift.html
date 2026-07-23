@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-arg data-arg-game="SD" data-arg-case="黑匣子 #SD-4372">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BPP档案 #SD-4372 · HELIOS-7失联事件</title>
+<link rel="stylesheet" href="star_drift.css">
+<link rel="stylesheet" href="interact.css">
+<link rel="stylesheet" href="arg.css">
+</head>
+<body>
+
+<!-- ARG-CLUE: 逃生密码 00110100 00110011 00110111 00110010 [二进制] -->
+<!-- ARG-CLUE: 坠落坐标 43.72 122.18 [轨道] -->
+<!-- BPP-INTERNAL: 北京航天控制中心 +86 010-6641-XXXX -->
+<!-- 档案碎片代号: STAR -->
+
+<button id="back-hub" onclick="location.href='index.html'">← 返回游戏中心</button>
+
+<div id="app">
+  <div id="topbar">
+    <div>
+      <div class="title">星 海 漂 流</div>
+      <div class="sub">STAR DRIFT · STATION HELIOS-7</div>
+    </div>
+    <div class="topbtns">
+      <button class="topbtn" id="btn-logs">📋 船员日志</button>
+      <button class="topbtn" id="btn-intro">⚡ 任务简报</button>
+    </div>
+  </div>
+
+  <div id="status-bar">
+    <div class="status-item" id="status-oxygen"><span class="status-icon">🟢</span> 氧气: <span id="oxygen-val">100%</span></div>
+    <div class="status-item" id="status-power"><span class="status-icon">🔴</span> 电力: <span id="power-val">0%</span></div>
+    <div class="status-item" id="status-time"><span class="status-icon">⏱</span> 剩余: <span id="time-val">--:--</span></div>
+  </div>
+
+  <div id="room">
+    <div id="room-img-wrap">
+      <img id="room-img" src="" alt="">
+      <div id="hotspots"></div>
+    </div>
+    <div id="room-info">
+      <div id="room-name"></div>
+      <div id="room-desc"></div>
+      <div id="msg"></div>
+      <div id="nav"></div>
+    </div>
+  </div>
+</div>
+
+<div id="inv-bar">
+  <span class="inv-label">装 备</span>
+  <div id="inv-items"></div>
+</div>
+
+<div class="modal-bg" id="modal-bg">
+  <div class="modal" id="modal-box"></div>
+</div>
+
+<script src="arg.js"></script>
+<script src="star_drift.js"></script>
+<script src="interact.js"></script>
+</body>
+</html>

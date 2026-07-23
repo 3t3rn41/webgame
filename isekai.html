@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-arg data-arg-game="IA" data-arg-case="实验档案 #IA-1920">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BPP档案 #IA-1920 · 星岚学园消失事件</title>
+<link rel="stylesheet" href="isekai.css">
+<link rel="stylesheet" href="interact.css">
+<link rel="stylesheet" href="arg.css">
+</head>
+<body>
+
+<!-- ARG-CLUE: 建校年份 MTkyMA== [Base64] -->
+<!-- ARG-CLUE: 学园坐标 35.6762 139.6503 [坐标] -->
+<!-- BPP-INTERNAL: 文京区教育委员会 +81 3-3261-XXXX -->
+<!-- 档案碎片代号: ISEK -->
+<button id="back-hub" onclick="location.href='index.html'">← 返回游戏中心</button>
+<div id="app">
+  <div id="topbar">
+    <div><div class="title">异 世 界 学 园</div><div class="sub">ISEKAI ACADEMY · 转学生物语</div></div>
+    <div class="topbtns">
+      <button class="topbtn" id="btn-memory">💎 记忆碎片</button>
+      <button class="topbtn" id="btn-intro">📖 转学手册</button>
+    </div>
+  </div>
+  <div id="status-bar">
+    <div class="status-item"><span class="si">⭐</span> 灵力: <span id="mana-val">100</span></div>
+    <div class="status-item"><span class="si">🔮</span> 线索: <span id="clue-val">0</span>/5</div>
+  </div>
+  <div id="room">
+    <div id="room-img-wrap"><img id="room-img" src="" alt=""><div id="hotspots"></div></div>
+    <div id="room-info"><div id="room-name"></div><div id="room-desc"></div><div id="msg"></div><div id="nav"></div></div>
+  </div>
+</div>
+<div id="inv-bar"><span class="inv-label">书 包</span><div id="inv-items"></div></div>
+<div class="modal-bg" id="modal-bg"><div class="modal" id="modal-box"></div></div>
+<script src="arg.js"></script>
+<script src="isekai.js"></script>
+<script src="interact.js"></script>
+</body>
+</html>

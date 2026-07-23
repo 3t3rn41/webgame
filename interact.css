@@ -1,0 +1,167 @@
+/* ============================================================
+   interact.css — Shared interaction enhancement styles
+   Works across all games by using CSS variables from each game.
+   ============================================================ */
+
+/* ===== TOAST NOTIFICATIONS ===== */
+#toast-container {
+  position: fixed; top: 50px; left: 50%; transform: translateX(-50%);
+  z-index: 3500; display: flex; flex-direction: column; gap: 8px;
+  pointer-events: none; width: 90%; max-width: 400px;
+}
+.toast {
+  padding: 10px 18px; border-radius: 6px; font-size: 13px; text-align: center;
+  opacity: 0; transform: translateY(-20px) scale(.95);
+  transition: all .35s cubic-bezier(.2,.8,.2,1);
+  backdrop-filter: blur(8px); border-width: 1px; border-style: solid;
+  letter-spacing: 1px; box-shadow: 0 4px 20px rgba(0,0,0,.4);
+  pointer-events: auto; cursor: pointer;
+}
+.toast.show { opacity: 1; transform: translateY(0) scale(1); }
+.toast.item {
+  background: rgba(20,20,30,.92);
+  border-color: var(--accent, #b8943e);
+  color: var(--accent, #b8943e);
+}
+.toast.good {
+  background: rgba(20,30,20,.92); border-color: var(--success, #4ade80);
+  color: var(--success, #4ade80);
+}
+.toast.warn {
+  background: rgba(30,25,15,.92); border-color: var(--warn, #ffaa00);
+  color: var(--warn, #ffaa00);
+}
+.toast.danger {
+  background: rgba(30,15,15,.92); border-color: var(--danger, #ff4466);
+  color: var(--danger, #ff4466);
+}
+.toast .toast-icon { margin-right: 6px; font-size: 15px; }
+
+/* ===== HOTSPOT ENHANCEMENTS ===== */
+/* Pulsing dot marker on interactive hotspots */
+.hotspot:not(.found)::before {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  width: 8px; height: 8px; border-radius: 50%;
+  transform: translate(-50%,-50%);
+  background: var(--accent, #b8943e);
+  opacity: .5; z-index: 2; pointer-events: none;
+  animation: hsDot 2.5s ease-in-out infinite;
+  box-shadow: 0 0 6px var(--accent, #b8943e);
+}
+.hotspot:not(.found):hover::before { opacity: 0; }
+@keyframes hsDot {
+  0%,100% { opacity: .25; transform: translate(-50%,-50%) scale(1); }
+  50% { opacity: .6; transform: translate(-50%,-50%) scale(1.6); }
+}
+
+/* Click ripple effect */
+.hotspot .ripple {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  background: var(--accent, #b8943e); opacity: .4;
+  transform: scale(0); animation: rippleAnim .6s ease-out;
+}
+@keyframes rippleAnim {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* Hotspot flash when activated */
+.hotspot.flash {
+  animation: hsFlash .5s ease-out;
+}
+@keyframes hsFlash {
+  0% { background: rgba(255,255,255,.3); }
+  100% { background: transparent; }
+}
+
+/* ===== MESSAGE TYPEWRITER ===== */
+#msg.typing::after {
+  content: '▌'; animation: blink .6s step-end infinite;
+  color: var(--accent, #b8943e);
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ===== SCREEN FLASH OVERLAY ===== */
+#screen-flash {
+  position: fixed; inset: 0; z-index: 3400; pointer-events: none;
+  opacity: 0; transition: opacity .15s;
+}
+#screen-flash.flash-good { background: radial-gradient(ellipse at center, rgba(74,222,128,.2), transparent 70%); }
+#screen-flash.flash-bad { background: radial-gradient(ellipse at center, rgba(255,68,102,.25), transparent 70%); }
+#screen-flash.flash-gold { background: radial-gradient(ellipse at center, rgba(232,184,78,.2), transparent 70%); }
+#screen-flash.show { opacity: 1; animation: flashFade .5s ease-out; }
+@keyframes flashFade { 0% { opacity: 1; } 100% { opacity: 0; } }
+
+/* ===== ITEM PICKUP ANIMATION ===== */
+.inv-item.new-item {
+  animation: itemPop .5s cubic-bezier(.2,1.4,.4,1);
+}
+@keyframes itemPop {
+  0% { transform: scale(0) translateY(-30px); opacity: 0; }
+  60% { transform: scale(1.2) translateY(0); }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* ===== ROOM TRANSITION ENHANCEMENT ===== */
+#room.transitioning {
+  animation: roomSlide .4s ease-out;
+}
+@keyframes roomSlide {
+  0% { transform: translateX(15px); opacity: .5; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* ===== NAV BUTTON ENHANCEMENTS ===== */
+.navbtn { position: relative; overflow: hidden; }
+.navbtn::after {
+  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);
+  transition: left .5s;
+}
+.navbtn:hover::after { left: 100%; }
+
+/* ===== MODAL ENHANCEMENT ===== */
+.modal { animation: modalSlide .35s cubic-bezier(.2,.8,.2,1); }
+@keyframes modalSlide {
+  0% { transform: translateY(20px) scale(.96); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* ===== KEYBOARD HINT ===== */
+#kb-hint {
+  position: fixed; bottom: 50px; right: 12px; z-index: 500;
+  font-size: 10px; color: rgba(255,255,255,.2); letter-spacing: 1px;
+  pointer-events: none; font-family: monospace;
+}
+
+/* ===== PROGRESS INDICATOR ===== */
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 2px; z-index: 3600;
+  background: var(--accent, #b8943e); width: 0;
+  transition: width .5s ease; box-shadow: 0 0 8px var(--accent, #b8943e);
+  opacity: .7;
+}
+
+/* ===== PUZZLE SUCCESS/FAIL EFFECTS ===== */
+.puzzle-row.success input {
+  border-color: var(--success, #4ade80) !important;
+  box-shadow: 0 0 12px rgba(74,222,128,.3) !important;
+  animation: pulseGood .4s;
+}
+.puzzle-row.fail input {
+  border-color: var(--danger, #ff4466) !important;
+  animation: shakeX .3s;
+}
+@keyframes pulseGood { 50% { transform: scale(1.05); } }
+@keyframes shakeX { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+
+/* ===== AMBIENT AUDIO TOGGLE ===== */
+#audio-toggle {
+  position: fixed; top: 12px; left: 12px; z-index: 3000;
+  background: rgba(0,0,0,.6); border: 1px solid var(--border, rgba(255,255,255,.1));
+  color: var(--accent, #b8943e); width: 32px; height: 32px;
+  border-radius: 50%; cursor: pointer; font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s; backdrop-filter: blur(4px);
+}
+#audio-toggle:hover { background: rgba(0,0,0,.8); border-color: var(--accent, #b8943e); }
+#audio-toggle.muted { opacity: .4; }

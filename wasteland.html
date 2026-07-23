@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-arg data-arg-game="WE" data-arg-case="方舟档案 #WE-6604">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BPP档案 #WE-6604 · 末日列车信号消失</title>
+<link rel="stylesheet" href="wasteland.css">
+<link rel="stylesheet" href="interact.css">
+<link rel="stylesheet" href="arg.css">
+</head>
+<body>
+
+<!-- ARG-CLUE: 制动密码 -.... -.... ----- ....- [摩斯码] -->
+<!-- ARG-CLUE: 列车坐标 41.8781 87.6298 [坐标] -->
+<!-- BPP-INTERNAL: 无线电频率 7.5MHz 避难所代号"尽头部" -->
+<!-- 档案碎片代号: WASTE -->
+<button id="back-hub" onclick="location.href='index.html'">← 返回游戏中心</button>
+<div id="app">
+  <div id="topbar">
+    <div><div class="title">末 日 列 车</div><div class="sub">WASTELAND EXPRESS</div></div>
+    <div class="topbtns">
+      <button class="topbtn" id="btn-notes">📻 电报记录</button>
+      <button class="topbtn" id="btn-intro">⚠ 生存指南</button>
+    </div>
+  </div>
+  <div id="status-bar">
+    <div class="status-item"><span class="si">🛢</span> 燃料: <span id="fuel-val">--</span></div>
+    <div class="status-item"><span class="si">🔧</span> 车况: <span id="health-val">--</span></div>
+    <div class="status-item"><span class="si">📡</span> 信号: <span id="signal-val">无</span></div>
+  </div>
+  <div id="room">
+    <div id="room-img-wrap"><img id="room-img" src="" alt=""><div id="hotspots"></div></div>
+    <div id="room-info"><div id="room-name"></div><div id="room-desc"></div><div id="msg"></div><div id="nav"></div></div>
+  </div>
+</div>
+<div id="inv-bar"><span class="inv-label">背 包</span><div id="inv-items"></div></div>
+<div class="modal-bg" id="modal-bg"><div class="modal" id="modal-box"></div></div>
+<script src="arg.js"></script>
+<script src="wasteland.js"></script>
+<script src="interact.js"></script>
+</body>
+</html>

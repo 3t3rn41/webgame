@@ -7,6 +7,9 @@
   --blood-bright:#c0392b;
   --gold:#b8943e;
   --accent:#b8943e;
+  --success:#4a7a3a;
+  --warn:#ffaa00;
+  --danger:#c0392b;
   --panel:rgba(12,12,14,0.92);
 }
 *{margin:0;padding:0;box-sizing:border-box;}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-arg data-arg-game="MH" data-arg-case="档案 #MH-1911">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雾隐档案 · Case File MH-1911</title>
+<link rel="stylesheet" href="mist_house.css">
+<link rel="stylesheet" href="interact.css">
+<link rel="stylesheet" href="arg.css">
+  <style>#back-hub{position:fixed;top:12px;right:12px;z-index:3000;background:rgba(12,12,14,.9);border:1px solid rgba(184,148,62,.4);color:var(--gold);padding:5px 12px;font-size:12px;cursor:pointer;border-radius:2px;}</style>
+</head>
+<body>
+
+<!-- ARG-CLUE: 祠堂仪式密码 MTIzNDU= [Base64] -->
+<!-- ARG-CLUE: 井壁密文 57 45 4C 4C 3D 42 41 53 4D 54 [Hex] -->
+<!-- 档案碎片代号: MIST -->
+
+<button id="back-hub" onclick="location.href='index.html'">← 返回游戏中心</button>
+
+<div id="app">
+  <div id="topbar">
+    <div>
+      <div class="title">雾 中 宅</div>
+      <div class="sub">THE HOUSE IN THE MIST</div>
+    </div>
+    <div class="topbtns">
+      <button class="topbtn" id="btn-journal">📖 日记</button>
+      <button class="topbtn" id="btn-letter">✉ 信件</button>
+    </div>
+  </div>
+
+  <div id="room">
+    <div id="room-img-wrap">
+      <img id="room-img" src="" alt="">
+      <div id="hotspots"></div>
+    </div>
+    <div id="room-info">
+      <div id="room-name"></div>
+      <div id="room-desc"></div>
+      <div id="msg"></div>
+      <div id="nav"></div>
+    </div>
+  </div>
+</div>
+
+<div id="inv-bar">
+  <span class="inv-label">口 袋</span>
+  <div id="inv-items"></div>
+</div>
+
+<div class="modal-bg" id="modal-bg">
+  <div class="modal" id="modal-box"></div>
+</div>
+
+<script src="arg.js"></script>
+<script src="mist_house.js"></script>
+<script src="interact.js"></script>
+</body>
+</html>
